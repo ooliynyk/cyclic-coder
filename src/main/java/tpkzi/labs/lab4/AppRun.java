@@ -44,7 +44,7 @@ public class AppRun extends Application {
         pane.add(outData, 0, 6);
         primaryStage.setScene(scene);
         primaryStage.show();
-
+//коментар
         encodeDecode.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
