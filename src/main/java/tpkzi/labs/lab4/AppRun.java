@@ -36,11 +36,14 @@ public class AppRun extends Application {
         pane.setHgap(10);
         pane.setVgap(10);
         pane.setPadding(new Insets(25));
-        Scene scene = new Scene(pane, 300, 300);
+        pane.setStyle("-fx-background-color: #ccffff; -fx-font: 14px Georgia");
+        Scene scene = new Scene(pane, 320, 320);
         pane.add(new Label("Input bits"), 0, 0);
         Button encode = new Button("Encode!");
+        encode.setStyle("-fx-background-color: #33cc99");
         pane.add(encode, 1, 1);
         TextField inData = getBinaryTextField(4);
+        //inData.setStyle();
         pane.add(inData, 0, 1);
         pane.add(new Label("Encoding result"), 0, 2);
         TextField codeResult = new TextField();
@@ -50,6 +53,7 @@ public class AppRun extends Application {
         TextField inEncodeSignal = getBinaryTextField(7);
         pane.add(inEncodeSignal, 0, 6);
         Button decode = new Button("Decode!");
+        decode.setStyle("-fx-background-color: #33cc99");
         pane.add(decode, 1, 6);
         pane.add(new Label("Decoding result"), 0, 7);
         TextField decodeResult = new TextField();
