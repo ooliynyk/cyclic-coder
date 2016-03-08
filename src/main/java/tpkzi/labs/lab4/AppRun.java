@@ -3,6 +3,8 @@ package tpkzi.labs.lab4;/**
  */
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -34,8 +36,8 @@ public class AppRun extends Application {
         pane.setPadding(new Insets(25));
         Scene scene = new Scene(pane, 300, 300);
         pane.add(new Label("Input bits"), 0, 0);
-        TextField inData = new TextField();
-        inData.setDisable(true);
+        TextField inData = getBinaryTextField(4);
+        //inData.setDisable(true);
         pane.add(inData, 0, 1);
         Button encodeDecode = new Button("Encode - decode!");
         pane.add(encodeDecode, 0, 2);
@@ -61,5 +63,35 @@ public class AppRun extends Application {
             }
         });
 
+    }
+    
+	private static TextField getBinaryTextField(int maxLen) {
+    	TextField field = new TextField();
+    	field.textProperty().addListener(new ChangeListener<String>() {
+
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				try {
+					if (newValue.isEmpty()) {
+						field.setText("");
+						return;
+					}
+					
+					StringBuilder sb = new StringBuilder();
+					char[] chars = newValue.toCharArray();
+					for (int i = 0; (i < chars.length) && (i < maxLen); i++) {
+						char c = chars[i];
+						if (c == '0' || c == '1') {
+							sb.append(c);
+						}
+					}
+					field.setText(sb.toString());
+				} catch (Exception e) {
+					field.setText(oldValue);
+					e.printStackTrace();
+				}
+			}
+    	});
+    	return field;
     }
 }
